@@ -5,9 +5,12 @@
  */
 package AppPckg;
 
+import java.awt.Font;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javafx.scene.paint.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,16 @@ public class KelloGUI extends javax.swing.JFrame {
     public KelloGUI() {
         
         initComponents();
+        try {
+            InputStream is = KelloGUI.class.getResourceAsStream("/font/RADIOLAND.TTF");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            
+            Font muutettuFontti = font.deriveFont(34f);
+            kelloLabel.setFont(muutettuFontti);
+        } catch (Exception exc) {
+            JOptionPane.showMessageDialog(this, exc);
+        }
+        
         
         new Thread() {
             public void run() {
@@ -72,7 +85,7 @@ public class KelloGUI extends javax.swing.JFrame {
 
         Kello.setBackground(new java.awt.Color(9, 8, 8));
 
-        kelloLabel.setFont(new java.awt.Font("Radioland", 0, 36)); // NOI18N
+        kelloLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         kelloLabel.setForeground(new java.awt.Color(215, 13, 13));
         kelloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kelloLabel.setToolTipText(null);
